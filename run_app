@@ -42,6 +42,12 @@ service dnsmasq start
 
 service nginx start
 
+sleep 5
+
+service nginx start
+
+sleep 5
+
 nginx -s reload
 
 sleep infinity
