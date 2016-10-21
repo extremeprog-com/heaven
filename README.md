@@ -22,7 +22,7 @@ Nginx will route all requests that come to xxx.*.com, xxx.*.*.com (any zone) to 
 In order to add site to LetsEncrypt run
 
 ```bash
-$ docker exec -it bash -c '/add_ssl_site.sh mycontainer.mydomain.com'
+$ docker exec -it nginx /add_ssl_site.sh mycontainer.mydomain.com
 ```
 
 where site_name is the name of your site.
