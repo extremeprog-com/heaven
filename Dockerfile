@@ -6,9 +6,6 @@ ADD https://raw.githubusercontent.com/tests-always-included/mo/master/mo /root/m
 
 RUN cd /root/ && git clone https://github.com/certbot/certbot && cd /root/certbot && ( ./certbot-auto -n || echo )
 
-ARG DOCKER_VERSION=1.9.1
-RUN cd /root/ && wget https://get.docker.com/builds/Linux/x86_64/docker-"$DOCKER_VERSION".tgz && tar zxvf docker-"$DOCKER_VERSION".tgz && ln -s /root/docker/docker /usr/bin/docker
-
 COPY / /-root-
 RUN cp -r /-root-/* /
 

@@ -1,5 +1,13 @@
-cron
+if [ -z "$DOCKER_VERSION" ]; then
+  echo Cannot run without DOCKER_VERSION
+  exit 255;
+fi
 
+cd /root/ && wget https://get.docker.com/builds/Linux/x86_64/docker-"$DOCKER_VERSION".tgz && tar zxvf docker-"$DOCKER_VERSION".tgz && ln -s /root/docker/docker /usr/bin/docker
+
+cd /
+
+cron
 
 cat /letsencrypt_retrieve_keys.cron /nginx_restart.cron > /tmp/cron.tab
 
