@@ -10,7 +10,7 @@ ARG DOCKER_VERSION=1.9.1
 RUN cd /root/ && wget https://get.docker.com/builds/Linux/x86_64/docker-"$DOCKER_VERSION".tgz && tar zxvf docker-"$DOCKER_VERSION".tgz && ln -s /root/docker/docker /usr/bin/docker
 
 COPY / /-root-
-RUN cp -r /-root- /
+RUN cp -r /-root-/* /
 
 CMD /run_app nginx
 
