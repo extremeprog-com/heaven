@@ -38,13 +38,13 @@ fi
 
 (while true; do bash /docker_hostnames.sh; sleep 5; done &)
 
-service dnsmasq start
+sleep 5
 
-service nginx start
+(while true; do dnsmasq -k; sleep 5; done &)
 
 sleep 5
 
-service nginx start
+(while true; do nginx -g 'daemon off;'; sleep 5; done &)
 
 sleep 5
 
