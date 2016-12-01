@@ -20,7 +20,7 @@ include /opt/containers/*/nginx/*.conf;
 server {
   listen 80;
 
-  server_name ~^(?<container>[^.]+)\.[a-z0-9-]+\.[a-z]+$;
+  server_name ~^(?<name>[^.]+)\.[a-z0-9-]+\.[a-z]+$;
 
   location / {
     resolver {{DNS_RESOLVER}};
@@ -39,7 +39,7 @@ server {
 server {
   listen 80;
 
-  server_name ~^(?<version>[0-9]+)\.(?<container>[^.]+)\.[a-z0-9-]+\.[a-z]+$;
+  server_name ~^(?<version>[0-9]+)\.(?<name>[^.]+)\.[a-z0-9-]+\.[a-z]+$;
   
   location / {
     resolver {{DNS_RESOLVER}};
@@ -59,7 +59,7 @@ server {
 server {
   listen *:81;
 
-  server_name ~^(?<container>[^.]+)\.private\.[a-z0-9-]+\.[a-z]+$;
+  server_name ~^(?<name>[^.]+)\.private\.[a-z0-9-]+\.[a-z]+$;
   
   location / {
     resolver {{DNS_RESOLVER}};
@@ -74,7 +74,7 @@ server {
 server {
   listen 80;
 
-  server_name ~^(?<container>[^.]+)\.[a-z0-9-]+\.[a-z0-9-]+\.[a-z]+$;
+  server_name ~^(?<name>[^.]+)\.[a-z0-9-]+\.[a-z0-9-]+\.[a-z]+$;
 
   location / {
     resolver {{DNS_RESOLVER}};
@@ -94,7 +94,7 @@ server {
 server {
   listen 80;
 
-  server_name ~^(?<version>[0-9]+)\.(?<container>[^.]+)\.[a-z]+[0-9]+\.[a-z0-9-]+\.[a-z]+$;
+  server_name ~^(?<version>[0-9]+)\.(?<name>[^.]+)\.[a-z]+[0-9]+\.[a-z0-9-]+\.[a-z]+$;
 
   location / {
     resolver {{DNS_RESOLVER}};
@@ -113,7 +113,7 @@ server {
 
   listen *:81;
 
-  server_name ~^(?<version>[0-9]+)\.(?<container>[^.]+)\.[a-z]+[0-9]+\.private\.[a-z0-9-]+\.[a-z]+$;
+  server_name ~^(?<version>[0-9]+)\.(?<name>[^.]+)\.[a-z]+[0-9]+\.private\.[a-z0-9-]+\.[a-z]+$;
 
   location / {
     resolver {{DNS_RESOLVER}};

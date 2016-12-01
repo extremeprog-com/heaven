@@ -50,11 +50,11 @@ if [ -z "$DNS_RESOLVER" ]; then
 fi
 
 if [ -z "$CONTAINER_DNS_TEMPLATE" ]; then
-    export CONTAINER_DNS_TEMPLATE='$container.lo'
+    export CONTAINER_DNS_TEMPLATE='$name.lo'
 fi
 
 if [ -z "$CONTAINER_VERSION_DNS_TEMPLATE" ]; then
-    export CONTAINER_DNS_TEMPLATE='$container.$version.lo'
+    export CONTAINER_DNS_TEMPLATE='$name.$version.lo'
 fi
 
 source /root/mo
