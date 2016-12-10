@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./lets-proxy &
+
 echo "$ADDITIONAL_CONFIG" > /etc/nginx/conf.d/additional_config.conf
 
 cd /
