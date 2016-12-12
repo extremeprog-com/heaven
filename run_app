@@ -4,6 +4,8 @@
 
 echo "$ADDITIONAL_CONFIG" > /etc/nginx/conf.d/additional_config.conf
 
+perl -pi.bak -e 's/\$\$/\$/g' /etc/nginx/conf.d/additional_config.conf # replace $$ to $ for rancher
+
 cd /
 
 cron
