@@ -2,9 +2,13 @@
 
 ./lets-proxy &
 
-echo "$ADDITIONAL_CONFIG" > /etc/nginx/conf.d/additional_config.conf
+source /root/mo
 
-perl -pi.bak -e 's/\$\$/\$/g' /etc/nginx/conf.d/additional_config.conf # replace $$ to $ for rancher
+echo "$ADDITIONAL_CONFIG" > /etc/nginx/conf.d/additional_config.conf.template
+
+perl -pi.bak -e 's/\$\$/\$/g' /etc/nginx/conf.d/additional_config.conf.template # replace $$ to $ for rancher
+
+cat /etc/nginx/conf.d/additional_config.conf.template | mo > /etc/nginx/conf.d/additional_config.conf
 
 cd /
 
@@ -65,7 +69,6 @@ if [ -z "$CONTAINER_VERSION_DNS_TEMPLATE" ]; then
     export CONTAINER_VERSION_DNS_TEMPLATE='$name.$version.lo'
 fi
 
-source /root/mo
 
 cat /etc/nginx/conf.d/containers.conf.template | mo > /etc/nginx/conf.d/containers.conf
 
