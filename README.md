@@ -55,7 +55,7 @@ We have our own Rancher catalog. You can add it manually to your Rancher and ins
 
 Additional ENV variables:
 
-**DNS_RESOLVER={INTERNAL_DNS_SERVER_IP_ADDRESS}** – for translation a container name to IP address. If it's not used, Heaven will run its own dnsmasq server and info from Docker Daemon.
+**DNS_RESOLVER={INTERNAL_DNS_SERVER_IP_ADDRESS}** – for translation a container name to IP address. If it's not used, Heaven will run its own dnsmasq server and fetch info from Docker Daemon.
 
 **CONTAINER_DNS_TEMPLATE={DNS_NAME_OF_CONTAINER}** – default `$name.lo` (for using with internal dnsmasq server), `heaven-frontend.$name` (for using with Rancher). $name is a part of a $name.yourdomain.com or $name.developerName.yourdomain.com. 
 
