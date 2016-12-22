@@ -17,11 +17,12 @@ https://www.youtube.com/watch?v=JxPj3GAYYZ0 https://www.youtube.com/watch?v=oW_7
 
 ## Installation
 
-1. Create `*.yourdomain.com` DNS record, install Heaven and create any container with any name which will be available as `xxx.yourdomain.com`.
+#### DNS record
+Create `*.yourdomain.com` DNS record, install Heaven and create any container with any name which will be available as `xxx.yourdomain.com`.
   - in case of appN.yurdomain.com you must create * IN A {SERVER_IP_ADDRESS}
   - in case of appN.developerName.yourdomain.com you must create `*.developername` IN A {SERVER_IP_ADDRESS}
 
-2. Run
+#### Docker run
 
 ```bash
 $ docker run --name heaven --hostname=heaven -d \
@@ -36,7 +37,8 @@ $ docker run --name heaven --hostname=heaven -d \
              extremeprog/heaven                       
 ```
 
-3. Containers MUST listen port 80 inside them to be exported. That's all!
+#### Check container port
+Containers MUST listen port 80 inside them to be exported. That's all!
 
 By default Heaven routes all requests to all containers. Let's consider container name of your site to be **xxx**.
 Heaven will route all requests that come to xxx.any.com, xxx.many.any.com (any zone) to your container on port 80.
