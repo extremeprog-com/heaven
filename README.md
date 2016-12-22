@@ -1,40 +1,27 @@
-# heaven
+# Heaven
 Nginx container with LetsEncrypt SSL for simple Docker deployments.
 
-## Deployment
+## Installation
 
 ```bash
-$ docker run --name nginx --hostname=nginx \
-                          -v /opt/containers:/opt/containers:ro \
-                          -v /var/run:/var/run/host \
-                          -v /usr/lib/systemd/system:/usr/lib/systemd/system/host \
-                          -v /opt/containers/nginx/etc/letsencrypt:/etc/letsencrypt \
-                          --cap-add=NET_ADMIN \
-                          -e DOCKER_VERSION=`docker -v | grep -oE '[0-9]+\.[0-9]+\.[0-9]+'` \
-                          -p 80:80 -p 443:443 \
-                          --restart=always \
-                          extremeprog/heaven
-                          
+$ docker run --name heaven --hostname=heaven -d \
+             -v /opt/containers:/opt/containers:ro \
+             -v /var/run:/var/run/host \
+             -v /usr/lib/systemd/system:/usr/lib/systemd/system/host \
+             -v /opt/containers/nginx/etc/letsencrypt:/etc/letsencrypt \
+             --cap-add=NET_ADMIN \
+             -e DOCKER_VERSION=`docker -v | grep -oE '[0-9]+\.[0-9]+\.[0-9]+'` \
+             -p 80:80 -p 443:443 \
+             --restart=always \
+             extremeprog/heaven                       
 ```
 
-By default nginx routes all requests to all containers. Let's say a container name of your site is xxx.
-Nginx will route all requests that come to xxx.any.com, xxx.many.any.com (any zone) to your container on port 80.
+By default Heaven routes all requests to all containers. Let's consider container name of your site to be **xxx**.
+Heaven will route all requests that come to xxx.any.com, xxx.many.any.com (any zone) to your container on port 80.
 
-In order to add site to LetsEncrypt run
+Heaven reads additional nginx configurations for your site from `/opt/containers/xxx/nginx` folder. You should just add the file with any name with `.conf` extention. For example, it can be useful if you want heaven to route requests to other port.
 
-```bash
-$ docker exec -it nginx /add_ssl_site.sh mycontainer.mydomain.com
-```
+After installation your site will be available over `http` or `https` automatically.
 
-where site_name is the name of your site.
-
-If you need to route the requests to different port you can add configuration for your container to **/opt/containers/{name}/nginx/** folder.
-It will be automatically retrieved by nginx.
-
-In order to force LetsEncrypt to work in your container add to the config following lines:
-
-```
-location /.well-known {
-  root /tmp;
-}
-```
+### For Rancher-based deployments
+We have our own Rancher catalog. You can add it manually to your Rancher and install Heaven stack from there. Further reading https://github.com/extremeprog-com/rancher-catalog.
