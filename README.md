@@ -2,7 +2,7 @@
 Nginx container with LetsEncrypt SSL for simple Docker deployments.
 
 ## Inspiration
-[https://www.youtube.com/watch?v=JxPj3GAYYZ0](https://www.youtube.com/watch?v=JxPj3GAYYZ0){:target="_blank"} [https://www.youtube.com/watch?v=oW_7XBrDBAA](https://www.youtube.com/watch?v=oW_7XBrDBAA}{:target="_blank"}
+https://www.youtube.com/watch?v=JxPj3GAYYZ0 https://www.youtube.com/watch?v=oW_7XBrDBAA
 
 ## Use Cases
 
