@@ -1,12 +1,27 @@
 # Heaven
 Nginx container with LetsEncrypt SSL for simple Docker deployments.
 
-## User Case
-You have containers app1, app2, app3, ... You want it to be available as `http://app1.yourdomain.com`, `app2.yourdomain.com`, `app3.yourdomain.com`...
+## Inspiration
+https://www.youtube.com/watch?v=JxPj3GAYYZ0 https://www.youtube.com/watch?v=oW_7XBrDBAA
 
-You can create `*.yourdomain.com` DNS record, install Heaven and create any container with any name which will be available as `xxx.yourdomain.com`.
+## Use Cases
+
+- You have containers app1, app2, app-clap, ... You want them to be available as `http(s)://app1.yourdomain.com`, `http(s)://app2.yourdomain.com`, `http(s)://app-clap.yourdomain.com`...
+
+- You have a developer with nick "mr-twister", ... He develops applications app1, app2, app-clap, and you want them to be available as `http://app1.mr-twister.yourdomain.com`, `http://app2.mr-twister.yourdomain.com`, `http://app-clap.mr-twister.yourdomain.com`...
+
+- You want to have a payment-free LetsEncrypt SSL for `https://` support. You dont't have to setup anything – it's fully automated!
+
+- You want to use the same behaviour with Rancher (fully automated), Swarm, ... 
+
 
 ## Installation
+
+1. Create `*.yourdomain.com` DNS record, install Heaven and create any container with any name which will be available as `xxx.yourdomain.com`.
+  - in case of appN.yurdomain.com you must create * IN A {SERVER_IP_ADDRESS}
+  - in case of appN.developerName.yourdomain.com you must create `*.developername` IN A {SERVER_IP_ADDRESS}
+
+2. Run
 
 ```bash
 $ docker run --name heaven --hostname=heaven -d \
@@ -21,6 +36,8 @@ $ docker run --name heaven --hostname=heaven -d \
              extremeprog/heaven                       
 ```
 
+3. Containers MUST listen port 80 inside them to be exported. That's all!
+
 By default Heaven routes all requests to all containers. Let's consider container name of your site to be **xxx**.
 Heaven will route all requests that come to xxx.any.com, xxx.many.any.com (any zone) to your container on port 80.
 
@@ -30,3 +47,12 @@ After installation your site will be available over `http` or `https` automatica
 
 ### For Rancher-based deployments
 We have our own Rancher catalog. You can add it manually to your Rancher and install Heaven stack from there. Further reading https://github.com/extremeprog-com/rancher-catalog.
+
+### Usage with other docker orchestration tools and in distributed environments
+
+Additional ENV variables:
+
+**DNS_RESOLVER={INTERNAL_DNS_SERVER_IP_ADDRESS}** – for translation a container name to IP address. If it's not used, Heaven will run its own dnsmasq server and info from Docker Daemon.
+
+**CONTAINER_DNS_TEMPLATE={DNS_NAME_OF_CONTAINER}** – default `$name.lo` (for using with internal dnsmasq server), `heaven-frontend.$name` (for using with Rancher). $name is a part of a $name.yourdomain.com or $name.developerName.yourdomain.com. 
+
