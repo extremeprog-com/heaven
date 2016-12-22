@@ -40,6 +40,7 @@ $ docker run --name heaven --hostname=heaven -d \
 #### Check container port
 Containers MUST listen port 80 inside them to be exported. That's all!
 
+## Details
 By default Heaven routes all requests to all containers. Let's consider container name of your site to be **xxx**.
 Heaven will route all requests that come to xxx.any.com, xxx.many.any.com (any zone) to your container on port 80.
 
