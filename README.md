@@ -19,8 +19,8 @@ https://www.youtube.com/watch?v=JxPj3GAYYZ0 https://www.youtube.com/watch?v=oW_7
 
 #### DNS record
 Create `*.yourdomain.com` DNS record, install Heaven and create any container with any name which will be available as `xxx.yourdomain.com`.
-  - in case of appN.yurdomain.com you must create * IN A {SERVER_IP_ADDRESS}
-  - in case of appN.developerName.yourdomain.com you must create `*.developername` IN A {SERVER_IP_ADDRESS}
+  - in case of appN.yurdomain.com you must create `* IN A {SERVER_IP_ADDRESS}`
+  - in case of appN.developerName.yourdomain.com you must create `*.developername IN A {SERVER_IP_ADDRESS}`
 
 #### Docker run
 
