@@ -1,6 +1,11 @@
 # Heaven
 Nginx container with LetsEncrypt SSL for simple Docker deployments.
 
+## User Case
+You have containers app1, app2, app3, ... You want it to be available as `http://app1.yourdomain.com`, `app2.yourdomain.com`, `app3.yourdomain.com`...
+
+You can create `*.yourdomain.com` DNS record, install Heaven and create any container with any name which will be available as `xxx.yourdomain.com`.
+
 ## Installation
 
 ```bash
