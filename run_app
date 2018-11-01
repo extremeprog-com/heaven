@@ -40,7 +40,10 @@ if [ -z "$DNS_RESOLVER" ]; then
       exit 255;
     fi
 
-    cd /root/ && wget https://get.docker.com/builds/Linux/x86_64/docker-"$DOCKER_VERSION".tgz && tar zxvf docker-"$DOCKER_VERSION".tgz && ln -s /root/docker/docker /usr/bin/docker
+    cd /root/ && wget https://get.docker.com && mv index.html get_docker.sh && chmod 755 get_docker.sh && ./get_docker.sh
+
+
+    #cd /root/ && wget https://get.docker.com/builds/Linux/x86_64/docker-"$DOCKER_VERSION".tgz && tar zxvf docker-"$DOCKER_VERSION".tgz && ln -s /root/docker/docker /usr/bin/docker
 
     if [ -S /usr/lib/systemd/system/host/docker.socket ]; then
       ln -s /usr/lib/systemd/system/host/docker.socket /var/run/docker.sock
